@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>UAS PEMROGRAMAN WEB</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    #output {
+      margin-top: 20px;
+      background: #e8f9e6;
+      border-left: 5px solid #4caf50;
+      padding: 15px;
+      border-radius: 6px;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>PEMROGRAMAN WEB</h2>
+    <label>Masukkan Nilai Awal:</label>
+    <input type="number" id="awal" placeholder="Contoh: 1">
+    <label>Masukkan Nilai Akhir:</label>
+    <input type="number" id="akhir" placeholder="Contoh: 15">
+    <button onclick="prosesDeret()">Tampilkan Deret</button>
+    
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function cariDeretGanjilMod3sisa2(awal, akhir) {
+      let deret = [];
+      for (let i = awal; i <= akhir; i++) {
+        if (i % 2 ===1 && i % 3 === 2) {
+          deret.push(i);
+        }
+      }
+      return deret;
+    }
+
+    function prosesDeret() {
+      const awal = parseInt(document.getElementById("awal").value);
+      const akhir = parseInt(document.getElementById("akhir").value);
+      const hasil = cariDeretGanjilMod3sisa2(awal, akhir);
+
+      const jumlah = hasil.reduce((a, b) => a + b, 0);
+      const teksJumlah = hasil.join(" + ") + " = " + jumlah;
+
+      let output = `
+        <strong>Nilai awal:</strong> ${awal}<br>
+        <strong>Nilai akhir:</strong> ${akhir}<br>
+        <strong>Deret bilangan:</strong> ${hasil.join(", ")}<br>
+        <strong>Jumlah nilai bilangan:</strong> ${teksJumlah}<br>
+        <strong>Banyak bilangan:</strong> ${hasil.length} buah
+      `;
+
+      document.getElementById("output").innerHTML = output;
+    }
+  </script>
+</body>
+</html>
